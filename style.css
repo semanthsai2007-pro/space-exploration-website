@@ -1,0 +1,156 @@
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Segoe UI',sans-serif;
+}
+
+body{
+  background:#000;
+  color:#fff;
+  overflow:hidden;
+}
+
+/* NAVBAR */
+nav{
+  position:fixed;
+  top:0;
+  width:100%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:30px 60px;
+  z-index:100;
+}
+
+.logo{
+  letter-spacing:8px;
+}
+
+.nav-box{
+  display:flex;
+  background:rgba(255,255,255,0.05);
+  backdrop-filter:blur(15px);
+  border:1px solid rgba(255,255,255,0.1);
+}
+
+.nav-box a{
+  color:white;
+  text-decoration:none;
+  padding:10px 25px;
+  font-size:12px;
+  letter-spacing:3px;
+  opacity:0.6;
+  transition:0.3s;
+}
+
+.nav-box a:hover{
+  opacity:1;
+  background:rgba(255,255,255,0.1);
+}
+
+/* HERO */
+.hero{
+  position:relative;
+  height:100vh;
+  display:flex;
+  align-items:center;
+}
+
+/* VIDEO BACKGROUND */
+.bg{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  z-index:-2;
+  animation:zoom 20s infinite alternate ease-in-out;
+}
+
+/* ZOOM ANIMATION */
+@keyframes zoom{
+  from{transform:scale(1);}
+  to{transform:scale(1.1);}
+}
+
+/* OVERLAY */
+.overlay{
+  position:absolute;
+  width:100%;
+  height:100%;
+  background:linear-gradient(to right, rgba(0,0,0,0.85), transparent);
+  z-index:-1;
+}
+
+/* CONTENT */
+.content{
+  margin-left:80px;
+  animation:fadeInUp 1.5s ease;
+}
+
+@keyframes fadeInUp{
+  from{opacity:0; transform:translateY(30px);}
+  to{opacity:1; transform:translateY(0);}
+}
+
+h1{
+  font-size:clamp(50px,8vw,80px);
+  letter-spacing:10px;
+  line-height:1;
+}
+
+p{
+  margin-top:20px;
+  margin-bottom:40px;
+  opacity:0.6;
+  letter-spacing:4px;
+  font-size:14px;
+}
+
+/* BUTTON */
+.btn{
+  padding:18px 50px;
+  border:1px solid white;
+  text-decoration:none;
+  color:white;
+  letter-spacing:5px;
+  transition:0.4s;
+  position:relative;
+  overflow:hidden;
+}
+
+.btn:hover{
+  background:white;
+  color:black;
+  box-shadow:0 0 30px rgba(255,255,255,0.5);
+}
+
+/* BUTTON SHINE */
+.btn::after{
+  content:'';
+  position:absolute;
+  top:0;
+  left:-100%;
+  width:100%;
+  height:100%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,0.4),transparent);
+}
+
+.btn:hover::after{
+  left:100%;
+  transition:0.5s;
+}
+
+/* RIGHT GLOW ORB */
+.orb{
+  position:absolute;
+  right:10%;
+  top:50%;
+  width:250px;
+  height:250px;
+  background:radial-gradient(circle,#00d4ff55,transparent);
+  border-radius:50%;
+  filter:blur(80px);
+}

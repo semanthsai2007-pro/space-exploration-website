@@ -1,0 +1,382 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cosmic Origins - Galactic Command Nexus</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+background:#04020d;
+color:white;
+overflow-x:hidden;
+min-height:100vh;
+position:relative;
+background:
+radial-gradient(circle at 20% 20%,rgba(236,72,153,.15),transparent 30%),
+radial-gradient(circle at 80% 80%,rgba(139,92,246,.15),transparent 30%),
+linear-gradient(135deg,#04020d,#0a0618,#04020d);
+}
+
+body::before{
+content:'';
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background-image:
+radial-gradient(white 1px,transparent 1px);
+background-size:40px 40px;
+opacity:.12;
+animation:starsMove 40s linear infinite;
+pointer-events:none;
+z-index:-2;
+}
+
+@keyframes starsMove{
+from{transform:translateY(0);}
+to{transform:translateY(-400px);}
+}
+
+.navbar{
+position:fixed;
+top:20px;
+right:30px;
+z-index:100;
+}
+
+.navbar a{
+text-decoration:none;
+color:white;
+padding:12px 24px;
+border-radius:30px;
+background:rgba(255,255,255,.08);
+backdrop-filter:blur(15px);
+border:1px solid rgba(255,255,255,.1);
+transition:.4s;
+}
+
+.navbar a:hover{
+background:rgba(255,255,255,.15);
+box-shadow:0 0 20px rgba(236,72,153,.4);
+}
+
+.hero{
+min-height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:40px;
+}
+
+.title{
+font-size:7rem;
+font-weight:900;
+letter-spacing:8px;
+text-transform:uppercase;
+background:
+linear-gradient(
+90deg,
+#ec4899,
+#a855f7,
+#6366f1,
+#ec4899
+);
+background-size:400% auto;
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+animation:gradientMove 8s linear infinite;
+margin-bottom:20px;
+}
+
+@keyframes gradientMove{
+to{
+background-position:400% center;
+}
+}
+
+.subtitle{
+color:#cbd5e1;
+font-size:1.2rem;
+max-width:800px;
+line-height:1.8;
+margin-bottom:60px;
+}
+
+.galaxy-core{
+position:relative;
+width:420px;
+height:420px;
+border-radius:50%;
+animation:
+rotateGalaxy 120s linear infinite,
+floatGalaxy 8s ease-in-out infinite;
+}
+
+.galaxy-core img{
+width:100%;
+height:100%;
+object-fit:cover;
+border-radius:50%;
+box-shadow:
+0 0 80px #ec4899,
+0 0 160px #8b5cf6,
+0 0 250px rgba(99,102,241,.5);
+}
+
+.galaxy-core::before{
+content:'';
+position:absolute;
+top:50%;
+left:50%;
+width:540px;
+height:540px;
+border:2px solid rgba(236,72,153,.2);
+border-radius:50%;
+transform:translate(-50%,-50%);
+animation:orbit1 20s linear infinite;
+}
+
+.galaxy-core::after{
+content:'';
+position:absolute;
+top:50%;
+left:50%;
+width:650px;
+height:650px;
+border:1px dashed rgba(139,92,246,.25);
+border-radius:50%;
+transform:translate(-50%,-50%);
+animation:orbit2 40s linear infinite reverse;
+}
+
+@keyframes orbit1{
+from{transform:translate(-50%,-50%) rotate(0);}
+to{transform:translate(-50%,-50%) rotate(360deg);}
+}
+
+@keyframes orbit2{
+from{transform:translate(-50%,-50%) rotate(360deg);}
+to{transform:translate(-50%,-50%) rotate(0);}
+}
+
+@keyframes rotateGalaxy{
+from{transform:rotate(0);}
+to{transform:rotate(360deg);}
+}
+
+@keyframes floatGalaxy{
+0%,100%{transform:translateY(0);}
+50%{transform:translateY(-20px);}
+}
+
+.dashboard{
+max-width:1300px;
+margin:100px auto;
+padding:20px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:25px;
+}
+
+.card{
+background:rgba(255,255,255,.04);
+backdrop-filter:blur(20px);
+border:1px solid rgba(255,255,255,.08);
+border-radius:25px;
+padding:30px;
+transition:.4s;
+}
+
+.card:hover{
+transform:translateY(-10px);
+border-color:#a855f7;
+box-shadow:
+0 0 25px rgba(168,85,247,.2);
+}
+
+.card h3{
+color:#ec4899;
+margin-bottom:10px;
+letter-spacing:1px;
+}
+
+.card p{
+color:#cbd5e1;
+line-height:1.8;
+}
+
+.timeline{
+max-width:1000px;
+margin:100px auto;
+padding:20px;
+}
+
+.timeline h2{
+text-align:center;
+font-size:3rem;
+margin-bottom:50px;
+background:linear-gradient(90deg,#ec4899,#8b5cf6);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+.timeline-item{
+position:relative;
+padding:25px;
+margin-bottom:25px;
+background:rgba(255,255,255,.04);
+border-left:4px solid #ec4899;
+border-radius:0 20px 20px 0;
+backdrop-filter:blur(20px);
+transition:.4s;
+}
+
+.timeline-item:hover{
+transform:translateX(10px);
+}
+
+.timeline-item h4{
+color:#ec4899;
+margin-bottom:10px;
+}
+
+.timeline-item p{
+color:#cbd5e1;
+line-height:1.8;
+}
+
+.footer{
+text-align:center;
+padding:40px;
+margin-top:80px;
+border-top:1px solid rgba(255,255,255,.08);
+color:#94a3b8;
+}
+
+@media(max-width:900px){
+
+.title{
+font-size:3.5rem;
+}
+
+.galaxy-core{
+width:250px;
+height:250px;
+}
+
+.galaxy-core::before{
+width:330px;
+height:330px;
+}
+
+.galaxy-core::after{
+width:400px;
+height:400px;
+}
+
+.timeline h2{
+font-size:2rem;
+}
+}
+</style>
+</head>
+
+<body>
+
+<div class="navbar">
+<a href="Index.html">← Hub</a>
+</div>
+
+<section class="hero">
+
+<h1 class="title">THE GALAXY</h1>
+
+<p class="subtitle">
+A colossal island of stars, dust, dark matter and cosmic mystery. Our Milky Way alone contains hundreds of billions of stars, each carrying stories of worlds yet to be discovered.
+</p>
+
+<div class="galaxy-core">
+<img src="C:\Users\seman\OneDrive\Documents\Desktop\Project UID\Galaxy (2).jpg" alt="Galaxy">
+</div>
+
+</section>
+
+<section class="dashboard">
+
+<div class="card">
+<h3>Our Address</h3>
+<p>Milky Way Galaxy</p>
+</div>
+
+<div class="card">
+<h3>Structure</h3>
+<p>Barred Spiral Galaxy</p>
+</div>
+
+<div class="card">
+<h3>Diameter</h3>
+<p>~100,000 Light Years</p>
+</div>
+
+<div class="card">
+<h3>Stars</h3>
+<p>100 - 400 Billion</p>
+</div>
+
+<div class="card">
+<h3>Age</h3>
+<p>13.6 Billion Years</p>
+</div>
+
+<div class="card">
+<h3>Central Object</h3>
+<p>Supermassive Black Hole</p>
+</div>
+
+</section>
+
+<section class="timeline">
+
+<h2>Galactic Evolution</h2>
+
+<div class="timeline-item">
+<h4>13.6 Billion Years Ago</h4>
+<p>The earliest structures of the Milky Way began forming from primordial matter.</p>
+</div>
+
+<div class="timeline-item">
+<h4>Billions of Stars Born</h4>
+<p>Gas clouds collapsed into stars, clusters and spiral arms over cosmic timescales.</p>
+</div>
+
+<div class="timeline-item">
+<h4>Formation of Solar System</h4>
+<p>About 4.6 billion years ago, our Sun and planets formed inside the Milky Way.</p>
+</div>
+
+<div class="timeline-item">
+<h4>Present Day</h4>
+<p>The Milky Way continues evolving while orbiting through the Local Group of galaxies.</p>
+</div>
+
+</section>
+
+<div class="footer">
+✦ Cosmic Origins | Galactic Command Nexus ✦
+</div>
+
+</body>
+</html>
+

@@ -1,0 +1,379 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lunar Research Station</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+background:#03050a;
+color:white;
+overflow-x:hidden;
+min-height:100vh;
+position:relative;
+}
+
+body::before{
+content:'';
+position:fixed;
+width:100%;
+height:100%;
+top:0;
+left:0;
+background:
+radial-gradient(circle at 20% 20%,rgba(165,180,252,.15),transparent 30%),
+radial-gradient(circle at 80% 80%,rgba(255,255,255,.08),transparent 30%);
+z-index:-2;
+}
+
+body::after{
+content:'';
+position:fixed;
+width:100%;
+height:100%;
+top:0;
+left:0;
+background-image:
+radial-gradient(white 1px,transparent 1px);
+background-size:35px 35px;
+opacity:.12;
+animation:stars 40s linear infinite;
+z-index:-1;
+}
+
+@keyframes stars{
+from{transform:translateY(0);}
+to{transform:translateY(-300px);}
+}
+
+.nav{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:30px 50px;
+}
+
+.logo{
+font-size:1.2rem;
+letter-spacing:4px;
+color:#c7d2fe;
+font-weight:700;
+}
+
+.back{
+text-decoration:none;
+color:white;
+padding:12px 22px;
+border:1px solid rgba(255,255,255,.1);
+border-radius:30px;
+background:rgba(255,255,255,.05);
+backdrop-filter:blur(10px);
+transition:.4s;
+}
+
+.back:hover{
+background:white;
+color:black;
+}
+
+.container{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:50px;
+padding:40px 70px;
+align-items:center;
+min-height:80vh;
+}
+
+.left-panel{
+position:relative;
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+.moon-core{
+width:350px;
+height:350px;
+border-radius:50%;
+overflow:hidden;
+position:relative;
+animation:float 6s ease-in-out infinite;
+box-shadow:
+0 0 40px rgba(165,180,252,.3),
+0 0 100px rgba(165,180,252,.15);
+}
+
+.moon-core img{
+width:100%;
+height:100%;
+object-fit:cover;
+border-radius:50%;
+}
+
+.moon-core::before{
+content:'';
+position:absolute;
+width:500px;
+height:500px;
+border:2px solid rgba(165,180,252,.15);
+border-radius:50%;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+animation:rotate 20s linear infinite;
+}
+
+.moon-core::after{
+content:'';
+position:absolute;
+width:620px;
+height:620px;
+border:1px dashed rgba(255,255,255,.1);
+border-radius:50%;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+animation:rotateReverse 35s linear infinite;
+}
+
+@keyframes rotate{
+from{transform:translate(-50%,-50%) rotate(0);}
+to{transform:translate(-50%,-50%) rotate(360deg);}
+}
+
+@keyframes rotateReverse{
+from{transform:translate(-50%,-50%) rotate(360deg);}
+to{transform:translate(-50%,-50%) rotate(0);}
+}
+
+@keyframes float{
+0%,100%{transform:translateY(0);}
+50%{transform:translateY(-15px);}
+}
+
+.right-panel h1{
+font-size:5rem;
+font-weight:900;
+margin-bottom:15px;
+background:linear-gradient(
+90deg,
+#fff,
+#c7d2fe,
+#818cf8,
+#fff
+);
+background-size:300% auto;
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+animation:shine 8s linear infinite;
+}
+
+@keyframes shine{
+to{
+background-position:300% center;
+}
+}
+
+.tag{
+color:#818cf8;
+letter-spacing:4px;
+text-transform:uppercase;
+margin-bottom:15px;
+font-size:.9rem;
+}
+
+.desc{
+line-height:2;
+color:#cbd5e1;
+margin-bottom:35px;
+}
+
+.stats{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:20px;
+}
+
+.card{
+background:rgba(255,255,255,.04);
+backdrop-filter:blur(20px);
+border:1px solid rgba(255,255,255,.08);
+padding:25px;
+border-radius:20px;
+transition:.4s;
+}
+
+.card:hover{
+transform:translateY(-8px);
+border-color:#818cf8;
+box-shadow:0 0 25px rgba(129,140,248,.2);
+}
+
+.card span{
+display:block;
+font-size:.8rem;
+letter-spacing:2px;
+text-transform:uppercase;
+color:#94a3b8;
+margin-bottom:10px;
+}
+
+.card h3{
+font-size:1.3rem;
+font-weight:600;
+}
+
+.database{
+max-width:1200px;
+margin:50px auto;
+padding:20px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+}
+
+.data-box{
+background:rgba(255,255,255,.04);
+backdrop-filter:blur(20px);
+border-radius:20px;
+padding:25px;
+border:1px solid rgba(255,255,255,.08);
+}
+
+.data-box h2{
+color:#a5b4fc;
+margin-bottom:15px;
+}
+
+.data-box p{
+color:#cbd5e1;
+line-height:1.8;
+}
+
+.footer{
+text-align:center;
+padding:30px;
+margin-top:40px;
+border-top:1px solid rgba(255,255,255,.08);
+color:#94a3b8;
+}
+
+@media(max-width:950px){
+
+.container{
+grid-template-columns:1fr;
+padding:20px;
+text-align:center;
+}
+
+.right-panel h1{
+font-size:3rem;
+}
+
+.moon-core{
+width:250px;
+height:250px;
+}
+
+.stats{
+grid-template-columns:1fr;
+}
+}
+</style>
+</head>
+
+<body>
+
+<nav class="nav">
+<div class="logo">LUNAR STATION</div>
+<a href="Past.html" class="back">← Return</a>
+</nav>
+
+<div class="container">
+
+<div class="left-panel">
+<div class="moon-core">
+<img src="C:\Users\seman\OneDrive\Documents\Desktop\Project UID\Moon wallpaper.jpg" alt="Moon">
+</div>
+</div>
+
+<div class="right-panel">
+
+<div class="tag">Nearest Celestial Neighbor</div>
+
+<h1>THE MOON</h1>
+
+<p class="desc">
+Earth's natural satellite and humanity's first destination beyond our planet. The Moon shapes tides, stabilizes Earth's rotation, and serves as a stepping stone toward future space exploration.
+</p>
+
+<div class="stats">
+
+<div class="card">
+<span>Orbital Period</span>
+<h3>27.3 Days</h3>
+</div>
+
+<div class="card">
+<span>Distance</span>
+<h3>384,400 km</h3>
+</div>
+
+<div class="card">
+<span>Gravity</span>
+<h3>16.6% Earth</h3>
+</div>
+
+<div class="card">
+<span>Surface</span>
+<h3>Regolith Craters</h3>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<section class="database">
+
+<div class="data-box">
+<h2>Apollo Missions</h2>
+<p>
+Six Apollo missions successfully landed humans on the lunar surface between 1969 and 1972.
+</p>
+</div>
+
+<div class="data-box">
+<h2>Lunar Origin</h2>
+<p>
+Most scientists believe the Moon formed after a giant collision between Earth and a Mars-sized object.
+</p>
+</div>
+
+<div class="data-box">
+<h2>Future Bases</h2>
+<p>
+Space agencies plan permanent lunar stations to support scientific research and deep-space missions.
+</p>
+</div>
+
+</section>
+
+<div class="footer">
+✦ Lunar Research Station | Cosmic Origins ✦
+</div>
+
+</body>
+</html>
+

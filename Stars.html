@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cosmic Origins - Stellar Observatory</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+background:
+radial-gradient(circle at top left,#291100 0%,transparent 30%),
+radial-gradient(circle at bottom right,#3d0f00 0%,transparent 30%),
+#020305;
+color:white;
+min-height:100vh;
+overflow-x:hidden;
+position:relative;
+}
+
+body::before{
+content:'';
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background-image:
+radial-gradient(white 1px,transparent 1px);
+background-size:35px 35px;
+opacity:.15;
+animation:starField 40s linear infinite;
+pointer-events:none;
+z-index:-2;
+}
+
+@keyframes starField{
+from{transform:translateY(0);}
+to{transform:translateY(-400px);}
+}
+
+.shooting-star{
+position:absolute;
+top:100px;
+left:-200px;
+width:180px;
+height:2px;
+background:linear-gradient(90deg,#fff,transparent);
+animation:shoot 6s linear infinite;
+}
+
+@keyframes shoot{
+0%{
+transform:translate(-200px,-100px) rotate(35deg);
+opacity:0;
+}
+15%{
+opacity:1;
+}
+100%{
+transform:translate(1800px,800px) rotate(35deg);
+opacity:0;
+}
+}
+
+.nav-bar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:30px 60px;
+}
+
+.logo{
+font-size:1.2rem;
+letter-spacing:4px;
+text-transform:uppercase;
+color:#ffd700;
+font-weight:700;
+}
+
+.back-btn{
+text-decoration:none;
+color:white;
+padding:12px 24px;
+border-radius:30px;
+background:rgba(255,255,255,.05);
+border:1px solid rgba(255,255,255,.1);
+backdrop-filter:blur(15px);
+transition:.4s;
+}
+
+.back-btn:hover{
+background:rgba(255,255,255,.15);
+box-shadow:0 0 20px rgba(255,215,0,.4);
+}
+
+.hero{
+text-align:center;
+padding:20px;
+}
+
+.hero h1{
+font-size:5rem;
+font-weight:900;
+letter-spacing:8px;
+margin-bottom:15px;
+background:
+linear-gradient(
+90deg,
+#ffffff,
+#ffd700,
+#ff8c00,
+#ffffff
+);
+background-size:300% auto;
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+animation:titleGlow 8s linear infinite;
+}
+
+@keyframes titleGlow{
+to{
+background-position:300% center;
+}
+}
+
+.hero p{
+color:#d4d4d4;
+max-width:700px;
+margin:auto;
+line-height:1.8;
+}
+
+.star-system{
+position:relative;
+width:100%;
+height:650px;
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+.star-core{
+position:relative;
+width:280px;
+height:280px;
+border-radius:50%;
+overflow:hidden;
+animation:floatStar 6s ease-in-out infinite;
+}
+
+.star-core img{
+width:100%;
+height:100%;
+object-fit:cover;
+border-radius:50%;
+position:relative;
+z-index:2;
+}
+
+.star-core::before{
+content:'';
+position:absolute;
+width:100%;
+height:100%;
+border-radius:50%;
+background:
+radial-gradient(circle,
+#fff7cc,
+#ffd700,
+#ff8c00,
+#ff4500);
+filter:blur(25px);
+animation:pulseStar 3s ease-in-out infinite;
+z-index:1;
+}
+
+.star-core::after{
+content:'';
+position:absolute;
+width:450px;
+height:450px;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+border-radius:50%;
+border:2px solid rgba(255,215,0,.2);
+animation:ringRotate 20s linear infinite;
+}
+
+@keyframes pulseStar{
+0%,100%{
+transform:scale(1);
+opacity:.8;
+}
+50%{
+transform:scale(1.15);
+opacity:1;
+}
+}
+
+@keyframes ringRotate{
+from{
+transform:translate(-50%,-50%) rotate(0);
+}
+to{
+transform:translate(-50%,-50%) rotate(360deg);
+}
+}
+
+@keyframes floatStar{
+0%,100%{
+transform:translateY(0);
+}
+50%{
+transform:translateY(-15px);
+}
+}
+
+.orbit-card{
+position:absolute;
+width:220px;
+padding:20px;
+background:rgba(255,255,255,.05);
+backdrop-filter:blur(15px);
+border:1px solid rgba(255,255,255,.08);
+border-radius:20px;
+transition:.4s;
+text-align:center;
+}
+
+.orbit-card:hover{
+transform:scale(1.08);
+box-shadow:0 0 30px rgba(255,215,0,.3);
+}
+
+.orbit-card h3{
+color:#ffd700;
+margin-bottom:10px;
+}
+
+.orbit-card p{
+color:#d4d4d4;
+font-size:.95rem;
+}
+
+.top{
+top:40px;
+}
+
+.bottom{
+bottom:40px;
+}
+
+.left{
+left:12%;
+}
+
+.right{
+right:12%;
+}
+
+.info-section{
+max-width:1200px;
+margin:40px auto;
+padding:20px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+}
+
+.info-box{
+background:rgba(255,255,255,.04);
+backdrop-filter:blur(20px);
+border-radius:25px;
+padding:30px;
+border:1px solid rgba(255,255,255,.08);
+transition:.4s;
+}
+
+.info-box:hover{
+transform:translateY(-10px);
+box-shadow:0 0 30px rgba(255,215,0,.15);
+}
+
+.info-box h2{
+color:#ffd700;
+margin-bottom:15px;
+}
+
+.info-box p{
+line-height:1.8;
+color:#d4d4d4;
+}
+
+.footer{
+text-align:center;
+padding:40px;
+margin-top:40px;
+border-top:1px solid rgba(255,255,255,.08);
+color:#999;
+}
+
+@media(max-width:1000px){
+
+.hero h1{
+font-size:3rem;
+}
+
+.star-system{
+height:auto;
+flex-direction:column;
+gap:25px;
+padding:40px 0;
+}
+
+.orbit-card{
+position:relative;
+left:auto;
+right:auto;
+top:auto;
+bottom:auto;
+width:90%;
+max-width:350px;
+}
+
+.nav-bar{
+padding:20px;
+}
+}
+</style>
+</head>
+
+<body>
+
+<div class="shooting-star"></div>
+
+<nav class="nav-bar">
+<div class="logo">Luminance</div>
+<a href="Past.html" class="back-btn">Return</a>
+</nav>
+
+<section class="hero">
+<h1>THE STARS</h1>
+<p>
+Luminous spheres of plasma held together by gravity. These cosmic furnaces create the elements that form planets, oceans, life, and everything humanity has ever touched.
+</p>
+</section>
+
+<section class="star-system">
+
+<div class="orbit-card top">
+<h3>Temperature</h3>
+<p>Millions of degrees inside stellar cores.</p>
+</div>
+
+<div class="orbit-card left">
+<h3>Main Element</h3>
+<p>Hydrogen fuels nuclear fusion reactions.</p>
+</div>
+
+<div class="star-core">
+<img src="C:\Users\seman\OneDrive\Documents\Desktop\Project UID\Asthentic stars.jpg" alt="Stars">
+</div>
+
+<div class="orbit-card right">
+<h3>Luminosity</h3>
+<p>Stars radiate enormous amounts of energy.</p>
+</div>
+
+<div class="orbit-card bottom">
+<h3>Lifespan</h3>
+<p>From millions to trillions of years.</p>
+</div>
+
+</section>
+
+<section class="info-section">
+
+<div class="info-box">
+<h2>Observable Stars</h2>
+<p>
+Scientists estimate there are septillions of stars across the observable universe.
+</p>
+</div>
+
+<div class="info-box">
+<h2>Closest Star</h2>
+<p>
+The Sun is the closest star to Earth and the source of nearly all energy on our planet.
+</p>
+</div>
+
+<div class="info-box">
+<h2>Star Types</h2>
+<p>
+Stars exist as red dwarfs, white dwarfs, giants, supergiants, neutron stars and more.
+</p>
+</div>
+
+<div class="info-box">
+<h2>Stellar Birth</h2>
+<p>
+Stars are born inside giant molecular clouds when gravity collapses dense regions of gas.
+</p>
+</div>
+
+</section>
+
+<div class="footer">
+✦ Cosmic Origins | Stellar Observatory ✦
+</div>
+
+</body>
+</html>
+

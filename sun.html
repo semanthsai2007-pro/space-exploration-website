@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cosmic Origins - The Sun</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+background:
+radial-gradient(circle at center,#2a1200 0%,#0b0500 40%,#000000 100%);
+color:#fff;
+min-height:100vh;
+overflow-x:hidden;
+position:relative;
+}
+
+body::before{
+content:'';
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background-image:
+radial-gradient(white 1px,transparent 1px);
+background-size:35px 35px;
+opacity:.15;
+animation:starsMove 40s linear infinite;
+z-index:-2;
+}
+
+body::after{
+content:'';
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:
+radial-gradient(circle at center,
+rgba(255,140,0,.12),
+transparent 60%);
+animation:heatWave 8s ease-in-out infinite;
+pointer-events:none;
+z-index:-1;
+}
+
+@keyframes starsMove{
+from{transform:translateY(0);}
+to{transform:translateY(-300px);}
+}
+
+@keyframes heatWave{
+0%,100%{opacity:.4;}
+50%{opacity:1;}
+}
+
+.nav-bar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:30px 60px;
+}
+
+.logo{
+font-size:1.2rem;
+font-weight:700;
+letter-spacing:3px;
+text-transform:uppercase;
+color:#ff9d00;
+text-shadow:0 0 15px rgba(255,157,0,.6);
+}
+
+.back-btn{
+text-decoration:none;
+color:#fff;
+padding:12px 22px;
+border-radius:30px;
+border:1px solid rgba(255,255,255,.2);
+background:rgba(255,255,255,.05);
+backdrop-filter:blur(10px);
+transition:.4s;
+}
+
+.back-btn:hover{
+background:#fff;
+color:#000;
+box-shadow:0 0 20px rgba(255,255,255,.5);
+}
+
+.container{
+display:flex;
+align-items:center;
+justify-content:center;
+gap:80px;
+padding:40px 60px;
+min-height:85vh;
+}
+
+.visual-side{
+flex:1;
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+.sun-image-container{
+position:relative;
+width:420px;
+height:420px;
+display:flex;
+justify-content:center;
+align-items:center;
+animation:floatSun 6s ease-in-out infinite;
+}
+
+.sun-image-container::before{
+content:'';
+position:absolute;
+width:85%;
+height:85%;
+background:#ff5500;
+border-radius:50%;
+filter:blur(70px);
+opacity:.8;
+animation:pulseGlow 4s ease-in-out infinite;
+}
+
+.sun-image-container::after{
+content:'';
+position:absolute;
+width:120%;
+height:120%;
+border:2px solid rgba(255,157,0,.25);
+border-radius:50%;
+animation:orbitSun 20s linear infinite;
+}
+
+.sun-img{
+width:100%;
+height:100%;
+object-fit:cover;
+border-radius:50%;
+border:3px solid rgba(255,157,0,.4);
+position:relative;
+z-index:5;
+box-shadow:
+0 0 50px rgba(255,85,0,.6),
+0 0 120px rgba(255,140,0,.4),
+0 0 200px rgba(255,200,0,.2);
+animation:rotateSun 100s linear infinite;
+}
+
+@keyframes pulseGlow{
+0%,100%{
+transform:scale(1);
+opacity:.7;
+}
+50%{
+transform:scale(1.15);
+opacity:1;
+}
+}
+
+@keyframes orbitSun{
+from{
+transform:rotate(0deg);
+}
+to{
+transform:rotate(360deg);
+}
+}
+
+@keyframes rotateSun{
+from{
+transform:rotate(0deg);
+}
+to{
+transform:rotate(360deg);
+}
+}
+
+@keyframes floatSun{
+0%,100%{
+transform:translateY(0);
+}
+50%{
+transform:translateY(-15px);
+}
+}
+
+.content-side{
+flex:1;
+max-width:650px;
+}
+
+.tagline{
+color:#ff9d00;
+text-transform:uppercase;
+letter-spacing:4px;
+font-size:.9rem;
+font-weight:600;
+margin-bottom:10px;
+}
+
+h1{
+font-size:5rem;
+font-weight:900;
+margin-bottom:20px;
+background:linear-gradient(
+90deg,
+#ffffff,
+#ffd700,
+#ff8c00,
+#ffffff
+);
+background-size:300% auto;
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+animation:sunshine 6s linear infinite;
+}
+
+@keyframes sunshine{
+to{
+background-position:300% center;
+}
+}
+
+.description{
+color:#cfcfcf;
+line-height:2;
+font-size:1.05rem;
+margin-bottom:35px;
+}
+
+.stats-grid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:20px;
+}
+
+.stat-card{
+background:rgba(255,255,255,.04);
+backdrop-filter:blur(20px);
+border:1px solid rgba(255,255,255,.08);
+border-radius:18px;
+padding:25px;
+transition:.4s;
+}
+
+.stat-card:hover{
+transform:translateY(-10px) scale(1.03);
+border-color:rgba(255,157,0,.5);
+box-shadow:
+0 0 25px rgba(255,157,0,.2),
+0 0 50px rgba(255,85,0,.15);
+}
+
+.stat-label{
+font-size:.8rem;
+letter-spacing:2px;
+text-transform:uppercase;
+color:#9ca3af;
+margin-bottom:8px;
+}
+
+.stat-value{
+font-size:1.6rem;
+font-weight:700;
+color:#ffd700;
+text-shadow:0 0 12px rgba(255,215,0,.5);
+}
+
+.footer{
+text-align:center;
+padding:25px;
+color:#888;
+border-top:1px solid rgba(255,255,255,.08);
+}
+
+@media(max-width:1000px){
+
+.container{
+flex-direction:column;
+padding:30px 20px;
+}
+
+.sun-image-container{
+width:280px;
+height:280px;
+}
+
+h1{
+font-size:3rem;
+}
+
+.stats-grid{
+grid-template-columns:1fr;
+}
+
+.nav-bar{
+padding:20px;
+}
+}
+</style>
+</head>
+
+<body>
+
+<nav class="nav-bar">
+<div class="logo">Cosmic Origins</div>
+<a href="Past.html" class="back-btn">← Return</a>
+</nav>
+
+<div class="container">
+
+<div class="visual-side">
+<div class="sun-image-container">
+<img src="Sun.jpg" alt="The Sun" class="sun-img">
+</div>
+</div>
+
+<div class="content-side">
+
+<div class="tagline">Our Parent Star</div>
+
+<h1>The Sun</h1>
+
+<p class="description">
+A nearly perfect sphere of hot plasma powered by nuclear fusion deep within its core. The Sun supplies nearly all the energy required for life on Earth and dominates the Solar System, containing more than 99% of its total mass. Its light has guided civilizations, powered ecosystems, and shaped the history of our planet for billions of years.
+</p>
+
+<div class="stats-grid">
+
+<div class="stat-card">
+<div class="stat-label">Core Temperature</div>
+<div class="stat-value">15 Million °C</div>
+</div>
+
+<div class="stat-card">
+<div class="stat-label">Star Type</div>
+<div class="stat-value">Yellow Dwarf</div>
+</div>
+
+<div class="stat-card">
+<div class="stat-label">Age</div>
+<div class="stat-value">4.6 Billion Yrs</div>
+</div>
+
+<div class="stat-card">
+<div class="stat-label">Distance From Earth</div>
+<div class="stat-value">149.6M km</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="footer">
+☀ Cosmic Origins | Solar Observatory Dashboard ☀
+</div>
+
+</body>
+</html>
+

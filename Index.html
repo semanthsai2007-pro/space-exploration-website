@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cosmic Explorer Luxury</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Segoe UI,sans-serif}
+body{background:#000;color:#fff;overflow:hidden}
+video.bg{position:fixed;inset:0;width:100%;height:100%;object-fit:cover}
+.overlay{position:fixed;inset:0;background:linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.7))}
+nav{position:fixed;top:20px;left:50%;transform:translateX(-50%);width:90%;
+display:flex;justify-content:space-between;align-items:center;padding:18px 30px;
+background:rgba(255,255,255,.06);backdrop-filter:blur(20px);border-radius:24px;z-index:10}
+.logo{font-weight:800;letter-spacing:4px}
+.nav-box a{color:#fff;text-decoration:none;margin-left:20px}
+.center{position:relative;z-index:5;height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
+.portal{width:320px;height:320px;border-radius:50%;border:3px solid rgba(139,92,246,.5);
+animation:spin 30s linear infinite;box-shadow:0 0 60px rgba(139,92,246,.8)}
+.portal:before,.portal:after{content:"";position:absolute;border-radius:50%}
+.portal:before{inset:-30px;border:2px dashed rgba(6,182,212,.5);animation:spin 20s linear infinite reverse}
+.portal:after{inset:30px;border:1px solid rgba(255,255,255,.3)}
+h1{font-size:6rem;letter-spacing:8px;margin-top:30px;
+background:linear-gradient(90deg,#fff,#8b5cf6,#06b6d4,#fff);
+background-size:300% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;
+animation:glow 8s linear infinite}
+p{font-size:1.2rem;margin-top:15px}
+.btn{margin-top:30px;padding:16px 40px;border-radius:40px;text-decoration:none;color:#fff;
+background:linear-gradient(90deg,#8b5cf6,#06b6d4)}
+.hud{position:fixed;bottom:20px;left:20px;z-index:5;background:rgba(255,255,255,.05);
+padding:20px;border-radius:18px;backdrop-filter:blur(16px)}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes glow{to{background-position:300% center}}
+</style>
+</head>
+<body>
+<video autoplay muted loop playsinline class="bg">
+<source src="Background.mp4" type="video/mp4">
+</video>
+<div class="overlay"></div>
+
+<nav>
+<div class="logo">COSMIC</div>
+<div class="nav-box">
+<a href="past.html">Past</a>
+<a href="#">Present</a>
+<a href="#">Future</a>
+</div>
+</nav>
+
+<div class="center">
+<div class="portal"></div>
+<h1>EXPLORE BEYOND</h1>
+<p>Journey Through Space And Time</p>
+<a href="#" class="btn">ENTER THE PORTAL</a>
+</div>
+
+<div class="hud">
+<div>Universe Age: 13.8 Billion Years</div>
+<div>Galaxies: 2 Trillion+</div>
+<div>Light Speed: 299,792 km/s</div>
+</div>
+</body>
+</html>
